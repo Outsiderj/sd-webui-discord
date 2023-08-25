@@ -68,7 +68,7 @@ func (shdl SlashHandler) controlnetModelChoice() []*discordgo.ApplicationCommand
 	models := modesvc.GetResponse().ModelList
 	for _, model := range models {
 		// 如果是control开头才添加，如果choices中已经25个了就不添加了
-		if strings.HasPrefix(model, "control") && len(choices) < 25 {
+		if strings.HasPrefix(model, "control") && len(choices) < 25 && len(model) <= 25 {
 			choices = append(choices, &discordgo.ApplicationCommandOptionChoice{
 				Name:  model,
 				Value: model,
@@ -116,6 +116,7 @@ func (shdl SlashHandler) controlnetModuleChoice() []*discordgo.ApplicationComman
 	}
 	model_list := modulesvc.GetResponse().ModuleList
 	for _, model := range model_list {
+	    if len(model) <= 25 { 
 		choices = append(choices, &discordgo.ApplicationCommandOptionChoice{
 			Name:  model,
 			Value: model,
