@@ -121,6 +121,7 @@ func (shdl SlashHandler) controlnetModuleChoice() []*discordgo.ApplicationComman
 			Name:  model,
 			Value: model,
 		})
+	    }
 	}
 	newChoices := []*discordgo.ApplicationCommandOptionChoice{}
 	for _, choice := range choices {
